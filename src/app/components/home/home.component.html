@@ -1,1 +1,132 @@
-<p>home works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Gestión de Reseñas</title>
+    <link rel="stylesheet" href="home.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <header class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Reseñas de Restaurantes</span>
+            </div>
+            <div class="user-actions">
+                <i class="fa-regular fa-bell"></i>
+                <div class="avatar"></div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <h1 class="panel-title">Panel de Gestión de Reseñas</h1>
+
+            <div class="toolbar">
+                <div class="search-input">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar restaurante...">
+                </div>
+                <button class="filter-button"><i class="fa-solid fa-sliders"></i></button>
+                <button class="create-review-button">
+                    <i class="fa-solid fa-plus"></i> Crear Nueva Reseña
+                </button>
+            </div>
+
+            <div class="reviews-table-wrapper">
+                <table class="reviews-table">
+                    <thead>
+                        <tr>
+                            <th>ID de Reseña</th>
+                            <th>Nombre del Restaurante</th>
+                            <th>Calificación</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#12345</td>
+                            <td>La Trattoria</td>
+                            <td>
+                                <span class="rating" aria-label="5 de 5 estrellas">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                            </td>
+                            <td>
+                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#12346</td>
+                            <td>Sushi Master</td>
+                            <td>
+                                <span class="rating" aria-label="5 de 5 estrellas">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                            </td>
+                            <td>
+                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#12347</td>
+                            <td>Tacos El Sol</td>
+                            <td>
+                                <span class="rating" aria-label="4 de 5 estrellas">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                </span>
+                            </td>
+                            <td>
+                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#12348</td>
+                            <td>Burger Heaven</td>
+                            <td>
+                                <span class="rating" aria-label="5 de 5 estrellas">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                            </td>
+                            <td>
+                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#12349</td>
+                            <td>Café Aroma</td>
+                            <td>
+                                <span class="rating" aria-label="4 de 5 estrellas">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                </span>
+                            </td>
+                            <td>
+                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="page-link page-arrow"><i class="fa-solid fa-angle-left"></i></a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <span class="ellipsis">...</span>
+                <a href="#" class="page-link">10</a>
+                <a href="#" class="page-link page-arrow"><i class="fa-solid fa-angle-right"></i></a>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>

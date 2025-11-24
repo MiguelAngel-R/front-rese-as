@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+/* Variables para mantener la consistencia de colores */
+:root {
+    --bg-dark: #1e1919; /* Fondo principal oscuro */
+    --bg-card: #2c2525; /* Fondo de la tabla/tarjeta */
+    --text-primary: #f0f0f0; /* Texto claro */
+    --text-secondary: #aaaaaa; /* Texto de relleno/secundario */
+    --accent-orange: #f47e38; /* Naranja de acento y botón principal */
+    --input-bg: #221c1c; /* Fondo de inputs/búsqueda */
+    --table-header-bg: #413636; /* Un color ligeramente más claro para el th */
+    --star-filled: #f47e38; /* Color para las estrellas llenas */
+}/* You can add global styles to this file, and also import other style files */
