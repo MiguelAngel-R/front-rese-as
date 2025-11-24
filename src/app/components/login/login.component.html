@@ -1,6 +1,6 @@
 <div class="container-fluid contenedor-principal">
     
-    <form action="" class="formulario">
+    <form action="" class="formulario"  (ngSubmit)="onSummit()">
         <div class="container-head">
             <div class="container-img">
                 <h3>
@@ -13,14 +13,20 @@
         </div>
         <div class="entrada">
             <label for="">Usuario</label>
-            <input type="text" placeholder="Usuario">
+            <input type="text" placeholder="Usuario" [(ngModel)]="usuarioRequest.usuario" name="usuario">
         </div>
         <div class="entrada">
             <label for="">Contraseña</label>
-            <input type="text" placeholder="Contraseña">
+            <input type="text" placeholder="Contraseña" [(ngModel)]="usuarioRequest.password" name="password">
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMensaje">
+            {{ errorMensaje }}
         </div>
         <div class="container-boton">
-            <button>Iniciar Sesión</button>
+            <button type="submit" class="btn btn-primary">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                {{ isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
+            </button>
         </div>
     </form>
    
