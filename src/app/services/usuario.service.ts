@@ -39,6 +39,7 @@ export class UsuarioService {
 
       if (response) {
         this.setToken(response.token);
+        return response;
       }
       throw new Error("Bad Response");
     } catch (error) {
