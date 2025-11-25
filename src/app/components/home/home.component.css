@@ -344,13 +344,17 @@ body {
 }
 
 .form-control{
+    background-color: #181311;
     padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    border-radius: 3px;
     font-size: 14px;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10px;
 }
+
 
 .form-control1{
     padding: 8px;
@@ -359,8 +363,8 @@ body {
     font-size: 14px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #fff;
-    color: #000;
+    background-color: #181311;
+    color: #ffffff;
 }
 
 .btn-submit{
