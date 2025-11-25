@@ -77,3 +77,9 @@
 
 
 
+.btn-registrarse{
+    background-color: transparent;
+    border: none;
+    color: #8B0000;
+    font-weight: 600;
+}

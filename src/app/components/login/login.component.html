@@ -22,14 +22,14 @@
         <div class="alert alert-danger" *ngIf="errorMensaje">
             {{ errorMensaje }}
         </div>
-        <div class="container-registrarse">
-            <button class="btn btn-primary" (click)="registrar()">Registrarse</button>
-        </div>
         <div class="container-boton">
             <button type="submit" class="btn btn-primary">
                 <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
                 {{ isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
             </button>
+        </div>
+        <div class="container-registrarse">
+            <button class="btn btn-primary btn-registrarse" (click)="registrar()">Registrarse</button>
         </div>
     </form>
    
