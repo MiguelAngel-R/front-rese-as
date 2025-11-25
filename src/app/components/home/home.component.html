@@ -17,7 +17,7 @@
             </div>
             <div class="user-actions">
                 <i class="fa-regular fa-bell"></i>
-                <button (click)="logout()">Cerrar Sesión</button>
+                <button (click)="logout()" class = "btn-cerrarsesion">Cerrar Sesión</button>
             </div>
         </header>
 
@@ -78,8 +78,8 @@
             <div class="container-eliminar">
                 <h5>¿Deseas eliminar esta reseña?</h5>
                 <div>
-                    <button (click)="eliminarResenia()">Eliminar</button>
-                    <button>Cancelar</button>
+                    <button (click)="eliminarResenia()" class="btn-eliminar" >Eliminar</button>
+                    <button  class="btn-eliminar" >Cancelar</button>
                 </div>
             </div>
         </section>
@@ -93,12 +93,12 @@
                     <h2>Crea una Reseña</h2>
                     <div class="entrada">
                         <label for="">Nombre del Restaurante</label>
-                        <input type="text" [(ngModel)]="resenia.nombreRestaurante" name="nombre restaurante">
+                        <input type="text" [(ngModel)]="resenia.nombreRestaurante" name="nombre restaurante" class= "form-control">
                     </div>
                     <div class="entrada">
                         <label for="">Calificación</label>
-                        <select name="calificacion" id=""  [(ngModel)]="resenia.calificacion" >
-                            <option value="0">calificación</option>
+                        <select name="calificacion" id=""  [(ngModel)]="resenia.calificacion" class = "form-control1">
+                            <option value="0">Calificación</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -108,12 +108,12 @@
                     </div>
                     <div class="entrada">
                         <label for="">Reseña</label>
-                        <textarea name="resenia" id="" [(ngModel)]="resenia.resenia"></textarea>
+                        <textarea name="resenia" id="" [(ngModel)]="resenia.resenia" class = "form-control"></textarea>
                     </div>
                      <div class="alert alert-danger" *ngIf="errorMensaje">
                         {{ errorMensaje }}
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" class = "btn-submit">
                         <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
                         {{ isLoading ? 'Creando Reseña...' : 'Crear Reseña' }}
                     </button>

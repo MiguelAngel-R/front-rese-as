@@ -12,12 +12,12 @@ export const routes: Routes = [
   { 
     path: 'login', 
     component: LoginComponent, 
-    canActivate: [LoginGuard] // Protege el login para usuarios ya autenticados
+    //canActivate: [LoginGuard] // Protege el login para usuarios ya autenticados
   },
   { 
     path: 'home', 
     component: HomeComponent, 
-    canActivate: [AuthGuard] // Protege el home para usuarios no autenticados
+    //canActivate: [AuthGuard] // Protege el home para usuarios no autenticados
   },
   {
     path : 'registrar',
