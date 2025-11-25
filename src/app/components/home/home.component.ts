@@ -158,6 +158,10 @@ export class HomeComponent {
     }
   }
 
+   cerrarEliminar(){
+    this.eliminar = false;
+   }
+
 
 
   
