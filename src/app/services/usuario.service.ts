@@ -13,6 +13,10 @@ export interface usuarioResponse {
   token: string
 }
 
+export interface mensajeResponse{
+  mensaje: boolean
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +50,50 @@ export class UsuarioService {
       throw error;
     }
   } 
+
+  async validarCredenciales(credentials: usuarioRequest) : Promise<mensajeResponse> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    try {
+      let response = await this.http.post<mensajeResponse>(
+        this.apiUrl + '/validar',
+        credentials,
+        {headers}
+      ).toPromise();
+
+      if (response) {        
+        return response;
+      }
+      throw new Error("Bad Response");
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async registrarse(credentials : usuarioRequest): Promise<mensajeResponse> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    try {
+      let response = await this.http.post<mensajeResponse>(
+        this.apiUrl + '/usuario',
+        credentials,
+        {headers}
+      ).toPromise();
+
+      if (response) {
+        return response;
+      }
+      throw new Error("Bad Response");
+    } catch (error) {
+      throw error;
+    }
+  }
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);

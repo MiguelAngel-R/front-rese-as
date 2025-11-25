@@ -17,7 +17,7 @@
             </div>
             <div class="user-actions">
                 <i class="fa-regular fa-bell"></i>
-                <div class="avatar"></div>
+                <button (click)="logout()">Cerrar Sesión</button>
             </div>
         </header>
 
@@ -30,7 +30,7 @@
                     <input type="text" placeholder="Buscar restaurante...">
                 </div>
                 <button class="filter-button"><i class="fa-solid fa-sliders"></i></button>
-                <button class="create-review-button">
+                <button class="create-review-button" (click)="habilitar()">
                     <i class="fa-solid fa-plus"></i> Crear Nueva Reseña
                 </button>
             </div>
@@ -39,78 +39,24 @@
                 <table class="reviews-table">
                     <thead>
                         <tr>
-                            <th>ID de Reseña</th>
-                            <th>Nombre del Restaurante</th>
-                            <th>Calificación</th>
+                            <th>Restaurante</th>
+                            <th>Calificacion</th>
+                            <th>Reseña</th>
+                            <th>Fecha</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#12345</td>
-                            <td>La Trattoria</td>
+                        <tr *ngFor="let rese of resenias.resenias">
+                            <td>{{rese.nombreRestaurante}}</td>
+                            <td>{{rese.calificacion}}</td>
+                            <td>{{rese.resenia}}</td>
+                            <td>{{rese.fecha}}</td>
                             <td>
-                                <span class="rating" aria-label="5 de 5 estrellas">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </span>
+                            <button class="action-edit"><i class="fa-solid fa-pencil" (click)="abrirResenia(rese)"></i></button>
+                            <button class="action-delete" (click)="abrirEliminar(rese._id)"><i class="fa-solid fa-trash-can"></i></button>
                             </td>
-                            <td>
-                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
-                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#12346</td>
-                            <td>Sushi Master</td>
-                            <td>
-                                <span class="rating" aria-label="5 de 5 estrellas">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </span>
-                            </td>
-                            <td>
-                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
-                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#12347</td>
-                            <td>Tacos El Sol</td>
-                            <td>
-                                <span class="rating" aria-label="4 de 5 estrellas">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                                </span>
-                            </td>
-                            <td>
-                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
-                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#12348</td>
-                            <td>Burger Heaven</td>
-                            <td>
-                                <span class="rating" aria-label="5 de 5 estrellas">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </span>
-                            </td>
-                            <td>
-                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
-                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#12349</td>
-                            <td>Café Aroma</td>
-                            <td>
-                                <span class="rating" aria-label="4 de 5 estrellas">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                                </span>
-                            </td>
-                            <td>
-                                <button class="action-edit"><i class="fa-solid fa-pencil"></i></button>
-                                <button class="action-delete"><i class="fa-solid fa-trash-can"></i></button>
-                            </td>
-                        </tr>
+                        </tr>                        
                     </tbody>
                 </table>
             </div>
@@ -126,7 +72,94 @@
             </div>
 
         </main>
+
+
+        <section [class.overlay]="eliminar === true" class="seccion-eliminar">
+            <div class="container-eliminar">
+                <h5>¿Deseas eliminar esta reseña?</h5>
+                <div>
+                    <button (click)="eliminarResenia()">Eliminar</button>
+                    <button>Cancelar</button>
+                </div>
+            </div>
+        </section>
+
+        <section [class.overlay]="crear === true" class="seccion-actualizar">
+            <div class="container-actualizar">
+                <div class="cerrar-crear">
+                    <button (click)="cerrarCrear()"><i class="bi bi-x-circle-fill"></i></button>
+                </div>
+                <form action=""  (ngSubmit)="crearResenia()">
+                    <h2>Crea una Reseña</h2>
+                    <div class="entrada">
+                        <label for="">Nombre del Restaurante</label>
+                        <input type="text" [(ngModel)]="resenia.nombreRestaurante" name="nombre restaurante">
+                    </div>
+                    <div class="entrada">
+                        <label for="">Calificación</label>
+                        <select name="calificacion" id=""  [(ngModel)]="resenia.calificacion" >
+                            <option value="0">calificación</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="entrada">
+                        <label for="">Reseña</label>
+                        <textarea name="resenia" id="" [(ngModel)]="resenia.resenia"></textarea>
+                    </div>
+                     <div class="alert alert-danger" *ngIf="errorMensaje">
+                        {{ errorMensaje }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                        {{ isLoading ? 'Creando Reseña...' : 'Crear Reseña' }}
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section [class.overlay]="actualizar === true" class="seccion-actualizar">
+            <div class="container-actualizar">
+                <div class="cerrar-crear">
+                    <button (click)="cerrarCrear()"><i class="bi bi-x-circle-fill"></i></button>
+                </div>
+                <form action=""  (ngSubmit)="actualizarResenia()">
+                    <h2>Crea una Reseña</h2>
+                    <div class="entrada">
+                        <label for="">Nombre del Restaurante</label>
+                        <input type="text" [(ngModel)]="resenia.nombreRestaurante" name="nombre restaurante">
+                    </div>
+                    <div class="entrada">
+                        <label for="">Calificación</label>
+                        <select name="calificacion" id=""  [(ngModel)]="resenia.calificacion" >
+                            <option value="0">calificación</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="entrada">
+                        <label for="">Reseña</label>
+                        <textarea name="resenia" id="" [(ngModel)]="resenia.resenia"></textarea>
+                    </div>
+                     <div class="alert alert-danger" *ngIf="errorMensaje">
+                        {{ errorMensaje }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                        {{ isLoading ? 'Actualizando Reseña...' : 'Actualizar' }}
+                    </button>
+                </form>
+            </div>
+        </section>
     </div>
+
+
 
 </body>
 </html>

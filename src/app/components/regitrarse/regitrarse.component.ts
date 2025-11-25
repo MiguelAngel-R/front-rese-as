@@ -1,19 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { usuarioRequest, usuarioResponse, UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
-
+import { usuarioRequest, usuarioResponse, UsuarioService } from '../../services/usuario.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-regitrarse',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './regitrarse.component.html',
+  styleUrl: './regitrarse.component.css'
 })
-export class LoginComponent {
-
+export class RegitrarseComponent {
   errorMensaje = '';
   isLoading = false;
 
@@ -29,12 +27,6 @@ export class LoginComponent {
   }
 
 
-  ngOnInit(): void {
-    if (this.usuarioService.autenticacion()) {
-      this.router.navigate(['/home']);
-    }
-  }
-
   async onSummit() : Promise<void>{
     if (!this.usuarioRequest.usuario || !this.usuarioRequest.password) {
       this.errorMensaje = 'Por favor completa todos los campos';
@@ -45,9 +37,18 @@ export class LoginComponent {
     this.errorMensaje = '';
 
     try {
-      await this.usuarioService.login(this.usuarioRequest);
-      localStorage.setItem('user', this.usuarioRequest.usuario);
-      this.router.navigate(['/home']);
+      let resultado = (await this.usuarioService.validarCredenciales(this.usuarioRequest)).mensaje;  
+      if (!resultado) {
+        let resultado2 = (await this.usuarioService.registrarse(this.usuarioRequest)).mensaje;
+        if (resultado2) {
+          this.router.navigate(['/login']);
+        }
+      }
+      else{
+        this.errorMensaje = "El usuario ya esta en uso, por favor ingresa otro";
+      }
+
+      
     } catch (error: any) {
       this.errorMensaje = error.error?.message || 'Error en el login. Verifica tus credenciales.';
     } finally {
@@ -55,10 +56,5 @@ export class LoginComponent {
     }    
   }
 
-  registrar(){
-    this.router.navigate(['/registrar']);
-  }
-
-  
 
 }

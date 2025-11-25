@@ -8,8 +8,8 @@
                     GourmetGuide
                 </h3>
             </div>
-            <h1>Bievenido de Nuevo</h1>
-            <p>Inicia sesión en tu cuenta para continuar</p>
+            <h1>Registrate</h1>
+            <p>Registrate para poder iniciar sesión</p>
         </div>
         <div class="entrada">
             <label for="">Usuario</label>
@@ -21,14 +21,11 @@
         </div>
         <div class="alert alert-danger" *ngIf="errorMensaje">
             {{ errorMensaje }}
-        </div>
-        <div class="container-registrarse">
-            <button class="btn btn-primary" (click)="registrar()">Registrarse</button>
-        </div>
+        </div>        
         <div class="container-boton">
             <button type="submit" class="btn btn-primary">
                 <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
-                {{ isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
+                {{ isLoading ? 'Registrando...' : 'Registrarse' }}
             </button>
         </div>
     </form>

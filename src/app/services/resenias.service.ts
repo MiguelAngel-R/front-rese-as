@@ -9,13 +9,18 @@ export interface reseñasRequest{
   _id : String,
   nombreRestaurante : String,
   calificacion : number,
-  reseña : String,
-  fecha : Date,
-  usuario: String
+  resenia : String,
+  fecha : string,
+  usuario: String,
+  __v : number
 }
 
 export interface reseñasresponse{
-  token: reseñasRequest[]
+  resenias: reseñasRequest[]
+}
+
+export interface mensajeResenia{
+  mensaje : boolean
 }
 
 
@@ -38,7 +43,7 @@ export class ReseniasService {
     try {
       let respuesta = await this.http.post<reseñasresponse>(
         this.apiUrl + '/listar',
-        usuario,
+        {"usuario" : usuario},
         {headers}
       ).toPromise();
 
@@ -51,15 +56,15 @@ export class ReseniasService {
     }
   }
 
-  async crearReseña(reseña : reseñasRequest) : Promise<reseñasresponse>{
+  async crearReseña(reseña : reseñasRequest) : Promise<mensajeResenia>{
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });
 
     try {
-      let respuesta = await this.http.post<reseñasresponse>(
-        this.apiUrl + 'crear',
+      let respuesta = await this.http.post<mensajeResenia>(
+        this.apiUrl + '/crear',
         reseña,
         {headers}
       ).toPromise();
@@ -74,14 +79,14 @@ export class ReseniasService {
   }
 
 
-  async modificarReseña(reseña: reseñasRequest) : Promise<reseñasresponse>{
+  async modificarReseña(reseña: reseñasRequest) : Promise<mensajeResenia>{
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });
 
     try {
-      let respuesta = await this.http.post<reseñasresponse>(
+      let respuesta = await this.http.post<mensajeResenia>(
         this.apiUrl + '/modificar',
         reseña,
         {headers}
@@ -96,14 +101,14 @@ export class ReseniasService {
     }
   }
 
-  async eliminarReseña(id: string) : Promise<reseñasresponse> {
+  async eliminarReseña(id: String) : Promise<mensajeResenia> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });
 
     try {
-      let respuesta = await this.http.post<reseñasresponse>(
+      let respuesta = await this.http.post<mensajeResenia>(
         this.apiUrl + '/eliminar',
         {id: id},
         {headers}

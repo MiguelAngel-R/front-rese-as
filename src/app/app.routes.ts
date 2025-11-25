@@ -3,6 +3,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/login.guard';
 import { LoginGuard } from './guards/home.guard';
+import { RegitrarseComponent } from './components/regitrarse/regitrarse.component';
 
 
 
@@ -11,12 +12,16 @@ export const routes: Routes = [
   { 
     path: 'login', 
     component: LoginComponent, 
-    canActivate: [AuthGuard] // Protege el login para usuarios ya autenticados
+    canActivate: [LoginGuard] // Protege el login para usuarios ya autenticados
   },
   { 
     path: 'home', 
     component: HomeComponent, 
-    canActivate: [LoginGuard] // Protege el home para usuarios no autenticados
+    canActivate: [AuthGuard] // Protege el home para usuarios no autenticados
+  },
+  {
+    path : 'registrar',
+    component: RegitrarseComponent
   },
   { path: '**', redirectTo: '/home' }
 ];
